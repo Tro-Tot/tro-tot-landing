@@ -23,7 +23,8 @@ const config = {
         primaryDark: '#070054',
       },
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'],
+        // poppins: ['Poppins', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {
