@@ -1,3 +1,5 @@
+import SectionOne from '@/components/home/SectionOne';
+import SectionTwo from '@/components/home/SectionTwo';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -5,8 +7,9 @@ export const metadata: Metadata = {
 };
 export default function HomePage() {
   return (
-    <div>
-      <h1>This is the home page</h1>
+    <div className='flex flex-col gap-[8rem]'>
+      <SectionOne />
+      <SectionTwo />
     </div>
   );
 }
