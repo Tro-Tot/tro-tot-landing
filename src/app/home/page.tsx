@@ -1,4 +1,5 @@
 import SectionOne from '@/components/home/SectionOne';
+import SectionThree from '@/components/home/SectionThree';
 import SectionTwo from '@/components/home/SectionTwo';
 import { Metadata } from 'next';
 
@@ -10,6 +11,7 @@ export default function HomePage() {
     <div className='flex flex-col gap-[8rem]'>
       <SectionOne />
       <SectionTwo />
+      <SectionThree />
     </div>
   );
 }
