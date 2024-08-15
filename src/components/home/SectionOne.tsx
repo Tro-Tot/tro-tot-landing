@@ -1,6 +1,7 @@
 'use client';
+import React from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React, { ReactNode } from 'react';
 import logoHouse from '@/assets/logoHouseText.png';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '../ui/button';
@@ -43,7 +44,12 @@ const IconCard = ({ image, header, subHeader }: IconCardProps) => {
 
 const UserCard = () => {
   return (
-    <div className='bg-slate-50 rounded-xl w-full md:w-fit px-5 py-4 divide-y relative md:top-[-50px] top-[-20px] mx-auto md:mx-0'>
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className='bg-slate-50 rounded-xl w-full md:w-fit px-5 py-4 divide-y relative md:top-[-50px] top-[-20px] mx-auto md:mx-0'
+    >
       <section className='flex flex-col gap-3 pb-5'>
         <div className='flex flex-row gap-4 items-center'>
           <Avatar className='h-16 w-16 md:h-24 md:w-24'>
@@ -91,14 +97,19 @@ const UserCard = () => {
           <span className='text-sm text-slate-500'>Thời gian xử lý</span>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 
 const SectionOne = () => {
   return (
     <section className='grid grid-cols-1 gap-9 md:grid-cols-[1fr_1fr] justify-items-center mt-1 md:mt-9 md:gap-5'>
-      <div className='flex flex-col md:space-y-5 space-y-9 items-center md:items-start'>
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        className='flex flex-col md:space-y-5 space-y-9 items-center md:items-start'
+      >
         <h1 className='text-3xl md:text-5xl font-semibold max-w-xs md:max-w-md text-center md:text-left text-primaryDark'>
           Mua, thuê hoặc bán tài sản của bạn dễ dàng
         </h1>
@@ -168,17 +179,29 @@ const SectionOne = () => {
             subHeader='sẵn sàng cư trú'
           />
         </div>
-      </div>
+      </motion.div>
 
       <div className='relative w-full'>
         {/* Hide background image on mobile */}
-        <div className='hidden md:block bg-sectionOneBg bg-cover bg-center w-full h-full'>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, filter: 'blur(0px)' }}
+          transition={{ duration: 2 }}
+          className='hidden md:block bg-sectionOneBg bg-cover bg-center w-full h-full'
+          style={{ filter: 'blur(10px)' }}
+        >
           <UserCard />
-        </div>
+        </motion.div>
 
         {/* Show UserCard above feedback on mobile */}
         <div className='md:hidden'>
-          <UserCard />
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5 }}
+          >
+            <UserCard />
+          </motion.div>
           <div className='bg-[#013B42] p-4 w-full'>
             <div className='flex flex-col md:flex-row justify-center items-center gap-3'>
               <h1 className='text-lg text-white font-semibold text-center md:text-left'>
@@ -200,7 +223,12 @@ const SectionOne = () => {
         </div>
 
         {/* Feedback section for desktop view */}
-        <div className='hidden md:block absolute bottom-0 right-0 bg-[#013B42] p-4 w-auto'>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5 }}
+          className='hidden md:block absolute bottom-0 right-0 bg-[#013B42] p-4 w-auto'
+        >
           <div className='flex flex-row justify-center items-center gap-3'>
             <h1 className='text-lg text-white font-semibold text-center md:text-left'>
               Xuất sắc
@@ -217,7 +245,7 @@ const SectionOne = () => {
           <h1 className='text-sm text-white font-semibold mt-3 text-center md:text-left'>
             Từ 3,264 đánh giá
           </h1>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
