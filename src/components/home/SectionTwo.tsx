@@ -10,13 +10,13 @@ interface IconCardProps {
 
 const IconCard = ({ image, header, subHeader }: IconCardProps) => {
   return (
-    <div className='flex flex-col gap-1'>
+    <div className='flex flex-col gap-1 items-center md:items-start text-center md:text-left'>
       <Image
         src={image}
         width={70}
         height={70}
         priority={true}
-        alt='abc'
+        alt={header}
         quality={100}
       />
       <h1 className='font-semibold text-primaryLight text-xl'>{header}</h1>
@@ -27,25 +27,25 @@ const IconCard = ({ image, header, subHeader }: IconCardProps) => {
 
 const SectionTwo = () => {
   return (
-    <section className='flex flex-row  justify-center gap-7'>
-      <div className='flex flex-col gap-1 bg-blue-100 ring-1 ring-primaryLight w-fit h-[30rem] px-4 py-8'>
-        <h1 className='max-w-sm font-semibold text-3xl'>
+    <section className='flex flex-col md:flex-row justify-center md:justify-between items-center md:items-stretch gap-7 px-4 md:px-0 w-full md:w-3/4 mx-auto'>
+      <div className='flex flex-col gap-4 bg-blue-100 ring-1 ring-primaryLight w-full md:w-[45%] h-auto md:h-[30rem] px-4 py-8'>
+        <h1 className='max-w-sm font-semibold text-3xl text-center md:text-left'>
           Cách mới để tìm nhà mới của bạn
         </h1>
-        <span className='text-lg text-slate-500 max-w-sm'>
+        <span className='text-lg text-slate-500 max-w-sm text-center md:text-left'>
           Tìm nơi ở mơ ước của bạn với hơn 10k+ tài sản được liệt kê.
         </span>
 
-        <div className='flex justify-center mt-8'>
-          <Button className='bg-primaryLight text-white uppercase w-64'>
+        <div className='flex justify-center md:justify-start mt-8'>
+          <Button className='bg-primaryLight text-white uppercase w-full '>
             <Search className='mr-3' />
             Tìm nhà
           </Button>
         </div>
       </div>
 
-      <div className='flex flex-col gap-9'>
-        <div className='flex flex-row items-center gap-2'>
+      <div className='flex flex-col gap-9 w-full md:w-[45%]'>
+        <div className='flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6'>
           <IconCard
             image='https://cdn-icons-png.flaticon.com/512/3841/3841627.png'
             header='Bảo hiểm tài sản'
@@ -58,7 +58,7 @@ const SectionTwo = () => {
           />
         </div>
 
-        <div className='flex flex-row items-center gap-2'>
+        <div className='flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6'>
           <IconCard
             image='https://cdn-icons-png.flaticon.com/512/9135/9135956.png'
             header='Hoa hồng thấp nhất'

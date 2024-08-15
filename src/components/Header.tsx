@@ -57,15 +57,15 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Navbar for mobile screens with smooth animation */}
+      {/* Navbar for mobile screens */}
       <nav
         className={`${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        } md:hidden flex-col gap-3 items-center justify-center w-full bg-slate-100 transition-[max-height,opacity] duration-500 ease-in-out overflow-hidden px-5 py-3`}
+        } md:hidden flex-col gap-3 items-center justify-center w-full rounded-xl bg-blue-100 transition-[max-height,opacity] duration-500 ease-in-out overflow-hidden px-5 py-3`}
         style={{ transitionProperty: 'max-height, opacity' }}
       >
         <NavLink />
-        {/* Sign up + Log in (visible in hamburger menu on mobile) */}
+        {/* Sign up + Log in in mobile screen */}
         <div className='flex flex-col gap-3 mt-5'>
           <Button className='bg-white text-primaryDark ring-1 ring-primaryDark hover:bg-slate-400'>
             Đăng ký

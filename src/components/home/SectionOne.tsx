@@ -99,7 +99,7 @@ const SectionOne = () => {
   return (
     <section className='grid grid-cols-1 gap-9 md:grid-cols-[1fr_1fr] justify-items-center mt-1 md:mt-9 md:gap-5'>
       <div className='flex flex-col md:space-y-5 space-y-9 items-center md:items-start'>
-        <h1 className='text-3xl md:text-5xl font-semibold max-w-xs md:max-w-md text-center md:text-left'>
+        <h1 className='text-3xl md:text-5xl font-semibold max-w-xs md:max-w-md text-center md:text-left text-primaryDark'>
           Mua, thuê hoặc bán tài sản của bạn dễ dàng
         </h1>
         <span className='max-w-xs md:max-w-md text-center md:text-left'>
