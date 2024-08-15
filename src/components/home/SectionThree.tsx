@@ -13,9 +13,10 @@ const HouseCard = () => {
   const toggleLike = () => {
     setLiked(!liked);
   };
+
   return (
-    <Card className='w-[350px] rounded-xl flex flex-col gap-5 pb-5 '>
-      <header className='relative'>
+    <Card className='w-full sm:w-[350px] rounded-xl flex flex-col gap-5 pb-5 px-4'>
+      <header className='relative flex justify-center'>
         <Image
           src='https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
           alt='Hình ảnh ngôi nhà'
@@ -29,7 +30,7 @@ const HouseCard = () => {
           <span className='uppercase text-[12px]'>Chú ý nhiều</span>
         </Badge>
       </header>
-      <main className='px-5 divide-y flex flex-col'>
+      <main className='divide-y flex flex-col'>
         <section className='pb-3'>
           <div className='flex justify-between items-center'>
             <div>
@@ -81,15 +82,17 @@ const HouseCard = () => {
 
 const SectionThree = () => {
   return (
-    <section className='flex flex-col gap-9'>
+    <section className='flex flex-col gap-9 px-4'>
       <div className='flex items-center flex-col gap-3'>
-        <h1 className='font-bold text-3xl'>Dựa trên vị trí của bạn</h1>
-        <span className='text-sm'>
+        <h1 className='font-bold text-3xl text-center'>
+          Dựa trên vị trí của bạn
+        </h1>
+        <span className='text-sm text-center'>
           Một số bất động sản được chúng tôi chọn gần vị trí của bạn.
         </span>
       </div>
 
-      <div className='grid grid-cols-[25rem_25rem_25rem] gap-y-5 justify-center '>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-5 justify-items-center'>
         <HouseCard />
         <HouseCard />
         <HouseCard />
@@ -98,7 +101,7 @@ const SectionThree = () => {
         <HouseCard />
       </div>
 
-      <div className='flex justify-center '>
+      <div className='flex justify-center'>
         <Button className='bg-primaryDark text-white w-fit'>Xem thêm</Button>
       </div>
     </section>

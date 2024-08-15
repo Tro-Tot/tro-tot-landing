@@ -13,9 +13,9 @@ export default function HomePage() {
     <div className='flex flex-col gap-[8rem]'>
       <SectionOne />
       <SectionTwo />
-      {/* <SectionThree /> */}
-      {/* <SectionFour/> */}
-      {/* <SectionFive/> */}
+      <SectionThree />
+      <SectionFour />
+      <SectionFive />
     </div>
   );
 }
