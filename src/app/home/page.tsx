@@ -12,10 +12,10 @@ export default function HomePage() {
   return (
     <div className='flex flex-col gap-[8rem]'>
       <SectionOne />
-      <SectionTwo />
+      {/* <SectionTwo />
       <SectionThree />
       <SectionFour/>
-      <SectionFive/>
+      <SectionFive/> */}
     </div>
   );
 }
