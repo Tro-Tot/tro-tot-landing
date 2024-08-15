@@ -17,13 +17,17 @@ interface FooterContentProps {
 
 const FooterHeader: React.FC<FooterHeaderProps> = ({ header }) => {
   return (
-    <h3 className='text-primaryDark uppercase mb-2 font-semibold'>{header}</h3>
+    <h3 className='text-primaryDark uppercase mb-2 font-semibold text-base md:text-lg'>
+      {header}
+    </h3>
   );
 };
 
 const FooterContent: React.FC<FooterContentProps> = ({ content }) => {
   return (
-    <span className='text-slate-500 capitalize my-1 text-sm'>{content}</span>
+    <span className='text-slate-500 capitalize my-1 text-sm md:text-base'>
+      {content}
+    </span>
   );
 };
 
@@ -34,7 +38,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({ children }) => {
 const Footer = () => {
   return (
     <section className='py-6'>
-      <div className='grid grid-cols-4 mb-9'>
+      <div className='grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-9 px-5'>
         {/* 1 */}
         <Image
           src={logoFull}
@@ -42,9 +46,10 @@ const Footer = () => {
           height={300}
           priority={true}
           alt='Logo House Text'
+          className='mx-auto md:mx-0 col-span-2 md:col-span-1'
         />
         {/* 2 */}
-        <div className='flex flex-col gap-8'>
+        <div className='grid grid-cols-2 gap-4 md:flex md:flex-col md:gap-8'>
           <FooterLink>
             <FooterHeader header='bán nhà' />
             <FooterContent content='quy trình bán' />
@@ -60,7 +65,7 @@ const Footer = () => {
           </FooterLink>
         </div>
         {/* 3 */}
-        <div className='flex flex-col gap-8'>
+        <div className='grid grid-cols-2 gap-4 md:flex md:flex-col md:gap-8'>
           <FooterLink>
             <FooterHeader header='mua, thuê và bán' />
             <FooterContent content='mua và bán bất động sản' />
@@ -75,7 +80,7 @@ const Footer = () => {
           </FooterLink>
         </div>
         {/* 4 */}
-        <div className='flex flex-col gap-8'>
+        <div className='grid grid-cols-2 gap-4 md:flex md:flex-col md:gap-8'>
           <FooterLink>
             <FooterHeader header='về chúng tôi' />
             <FooterContent content='công ty' />
@@ -93,7 +98,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className='text-center text-slate-600 pb-6'>
+      <div className='text-center text-slate-600 pb-6 text-xs md:text-sm'>
         ©2024 Tro Tot. All rights reserved.
       </div>
     </section>
