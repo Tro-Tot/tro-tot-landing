@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { Card } from '../ui/card';
 import { Badge } from '../ui/badge';
 import Colors from '@/constants/color';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const HouseCard = () => {
   const [liked, setLiked] = useState(false);
@@ -81,8 +83,19 @@ const HouseCard = () => {
 };
 
 const SectionThree = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <section className='flex flex-col gap-9 px-4'>
+    <motion.section
+      ref={ref}
+      initial={{ filter: 'blur(20px)', opacity: 0 }}
+      animate={inView ? { filter: 'blur(0px)', opacity: 1 } : {}}
+      transition={{ duration: 1 }}
+      className='flex flex-col gap-9 px-4'
+    >
       <div className='flex items-center flex-col gap-3'>
         <h1 className='font-bold text-3xl text-center'>
           Dựa trên vị trí của bạn
@@ -104,7 +117,7 @@ const SectionThree = () => {
       <div className='flex justify-center'>
         <Button className='bg-primaryDark text-white w-fit'>Xem thêm</Button>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

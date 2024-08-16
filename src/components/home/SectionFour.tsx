@@ -2,10 +2,23 @@
 import { Card } from '../ui/card';
 import { FileCheck, HousePlus, TvMinimalPlay } from 'lucide-react';
 import Colors from '@/constants/color';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const SectionFour = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <section className='bg-primaryDark text-white py-8 px-4 md:px-9 h-auto md:h-[600px] flex flex-col'>
+    <motion.section
+      ref={ref}
+      initial={{ filter: 'blur(20px)', opacity: 0 }}
+      animate={inView ? { filter: 'blur(0px)', opacity: 1 } : {}}
+      transition={{ duration: 1 }}
+      className='bg-primaryDark text-white py-8 px-4 md:px-9 h-auto md:h-[600px] flex flex-col'
+    >
       <main className='border-b border-b-slate-500 pb-9'>
         <div className='flex flex-col md:flex-row items-center justify-between md:justify-around font-semibold gap-5'>
           <div className='text-2xl md:text-3xl max-w-md text-center md:text-left'>
@@ -89,7 +102,7 @@ const SectionFour = () => {
           </span>
         </div>
       </main>
-    </section>
+    </motion.section>
   );
 };
 

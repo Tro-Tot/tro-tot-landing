@@ -1,10 +1,24 @@
+'use client';
 import React from 'react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const SectionFive = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <section className='flex flex-col items-center space-y-6 px-4 md:px-0 text-center'>
+    <motion.section
+      ref={ref}
+      initial={{ filter: 'blur(20px)', opacity: 0 }}
+      animate={inView ? { filter: 'blur(0px)', opacity: 1 } : {}}
+      transition={{ duration: 1 }}
+      className='flex flex-col items-center space-y-6 px-4 md:px-0 text-center'
+    >
       <h1 className='text-2xl font-semibold text-primaryLight'>
         Không gửi thư rác
       </h1>
@@ -24,7 +38,7 @@ const SectionFive = () => {
         Tham gia cùng <span className='text-primaryLight'>10,000+</span> chủ nhà
         khác trong cộng đồng của chúng tôi.
       </span>
-    </section>
+    </motion.section>
   );
 };
 
