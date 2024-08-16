@@ -186,7 +186,7 @@ const SectionOne = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, filter: 'blur(0px)' }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 1 }}
           className='hidden md:block bg-sectionOneBg bg-cover bg-center w-full h-full'
           style={{ filter: 'blur(10px)' }}
         >
