@@ -1,7 +1,6 @@
 'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React, { useRef } from 'react';
+import { useInView } from 'framer-motion';
 import Image from 'next/image';
 import { Button } from '../ui/button';
 import { Search } from 'lucide-react';
@@ -30,21 +29,18 @@ const IconCard = ({ image, header, subHeader }: IconCardProps) => {
 };
 
 const SectionTwo = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
     <section
       ref={ref}
       className='flex flex-col md:flex-row justify-center md:justify-between items-center md:items-stretch gap-7 px-4 md:px-0 w-full md:w-3/4 mx-auto'
     >
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 1 }}
-        className='flex flex-col gap-4 bg-blue-100 ring-1 ring-primaryLight w-full md:w-[45%] h-auto md:h-[30rem] px-4 py-8'
+      <div
+        className={`flex flex-col gap-4 bg-blue-100 ring-1 ring-primaryLight w-full md:w-[45%] h-auto md:h-[30rem] px-4 py-8 transform transition-all duration-1000 ${
+          isInView ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
+        }`}
       >
         <h1 className='max-w-sm font-semibold text-3xl text-center md:text-left'>
           Cách mới để tìm nhà mới của bạn
@@ -59,13 +55,12 @@ const SectionTwo = () => {
             Tìm nhà
           </Button>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 1 }}
-        className='flex flex-col gap-9 w-full md:w-[45%]'
+      <div
+        className={`flex flex-col gap-9 w-full md:w-[45%] transform transition-all duration-1000 ${
+          isInView ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+        }`}
       >
         <div className='flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6'>
           <IconCard
@@ -92,7 +87,7 @@ const SectionTwo = () => {
             subHeader='Tham quan ảo và lên lịch thăm trước khi thuê hoặc mua bất kỳ tài sản nào. Bạn có toàn quyền kiểm soát.'
           />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

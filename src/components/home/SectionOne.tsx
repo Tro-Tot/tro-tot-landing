@@ -1,6 +1,6 @@
 'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import logoHouse from '@/assets/logoHouseText.png';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -43,10 +43,14 @@ const IconCard = ({ image, header, subHeader }: IconCardProps) => {
 };
 
 const UserCard = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1 }}
       className='bg-slate-50 rounded-xl w-full md:w-fit px-5 py-4 divide-y relative md:top-[-50px] top-[-20px] mx-auto md:mx-0'
     >
@@ -102,11 +106,17 @@ const UserCard = () => {
 };
 
 const SectionOne = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <section className='grid grid-cols-1 gap-9 md:grid-cols-[1fr_1fr] justify-items-center mt-1 md:mt-9 md:gap-5'>
+    <section
+      ref={ref}
+      className='grid grid-cols-1 gap-9 md:grid-cols-[1fr_1fr] justify-items-center mt-1 md:mt-9 md:gap-5'
+    >
       <motion.div
         initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 1 }}
         className='flex flex-col md:space-y-5 space-y-9 items-center md:items-start'
       >
@@ -185,7 +195,7 @@ const SectionOne = () => {
         {/* Hide background image on mobile */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, filter: 'blur(0px)' }}
+          animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
           transition={{ duration: 1 }}
           className='hidden md:block bg-sectionOneBg bg-cover bg-center w-full h-full'
           style={{ filter: 'blur(10px)' }}
@@ -197,7 +207,7 @@ const SectionOne = () => {
         <div className='md:hidden'>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.5 }}
           >
             <UserCard />
@@ -225,7 +235,7 @@ const SectionOne = () => {
         {/* Feedback section for desktop view */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1.5 }}
           className='hidden md:block absolute bottom-0 right-0 bg-[#013B42] p-4 w-auto'
         >

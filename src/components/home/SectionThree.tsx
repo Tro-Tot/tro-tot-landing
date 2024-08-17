@@ -1,13 +1,12 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Bath, BedSingle, Heart, Proportions, Sparkle } from 'lucide-react';
 import { Button } from '../ui/button';
 import Image from 'next/image';
 import { Card } from '../ui/card';
 import { Badge } from '../ui/badge';
+import { useInView } from 'framer-motion';
 import Colors from '@/constants/color';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 
 const HouseCard = () => {
   const [liked, setLiked] = useState(false);
@@ -83,18 +82,15 @@ const HouseCard = () => {
 };
 
 const SectionThree = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      initial={{ filter: 'blur(20px)', opacity: 0 }}
-      animate={inView ? { filter: 'blur(0px)', opacity: 1 } : {}}
-      transition={{ duration: 1 }}
-      className='flex flex-col gap-9 px-4'
+      className={`flex flex-col gap-9 px-4 transition-opacity duration-1000 ease-in-out ${
+        isInView ? 'opacity-100 blur-none' : 'opacity-0 blur-lg'
+      }`}
     >
       <div className='flex items-center flex-col gap-3'>
         <h1 className='font-bold text-3xl text-center'>
@@ -105,7 +101,7 @@ const SectionThree = () => {
         </span>
       </div>
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-5 justify-items-center'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[23rem_23rem_23rem] justify-center gap-y-5 justify-items-center'>
         <HouseCard />
         <HouseCard />
         <HouseCard />
@@ -117,7 +113,7 @@ const SectionThree = () => {
       <div className='flex justify-center'>
         <Button className='bg-primaryDark text-white w-fit'>Xem thêm</Button>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
