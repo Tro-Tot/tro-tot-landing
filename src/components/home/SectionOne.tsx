@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import logoHouse from '@/assets/logoHouseText.png';
@@ -14,12 +14,32 @@ import {
 } from 'lucide-react';
 import Colors from '@/constants/color';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Input } from '../ui/input';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import imageCarousel1 from '@/assets/sectionOne/imageCarousel1.jpg';
+import imageCarousel2 from '@/assets/sectionOne/imageCarousel2.jpg';
+import imageCarousel3 from '@/assets/sectionOne/imageCarousel3.jpg';
+import imageCarousel4 from '@/assets/sectionOne/imageCarousel4.jpg';
+import imageCarousel5 from '@/assets/sectionOne/imageCarousel5.jpg';
 
 interface IconCardProps {
   image: string;
   header: string;
   subHeader: string;
 }
+
+const images = [
+  { src: imageCarousel1, alt: 'Image 1' },
+  { src: imageCarousel2, alt: 'Image 2' },
+  { src: imageCarousel3, alt: 'Image 3' },
+  { src: imageCarousel4, alt: 'Image 4' },
+  { src: imageCarousel5, alt: 'Image 5' },
+];
 
 const IconCard = ({ image, header, subHeader }: IconCardProps) => {
   return (
@@ -29,7 +49,7 @@ const IconCard = ({ image, header, subHeader }: IconCardProps) => {
         width={50}
         height={50}
         priority={true}
-        alt='abc'
+        alt={header}
         quality={100}
       />
       <h1 className='font-semibold text-primaryLight text-lg md:text-xl text-center md:text-left'>
@@ -52,7 +72,7 @@ const UserCard = () => {
       initial={{ opacity: 0, y: -50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1 }}
-      className='bg-slate-50 rounded-xl w-full md:w-fit px-5 py-4 divide-y relative md:top-[-50px] top-[-20px] mx-auto md:mx-0'
+      className='bg-white bg-opacity-90 rounded-xl w-full md:w-[400px] p-5 md:p-7 shadow-lg'
     >
       <section className='flex flex-col gap-3 pb-5'>
         <div className='flex flex-row gap-4 items-center'>
@@ -91,6 +111,7 @@ const UserCard = () => {
           </span>
         </div>
       </section>
+
       <section className='flex flex-col md:flex-row items-center justify-between pt-3'>
         <div className='text-center md:text-left flex-1'>
           <h1 className='font-bold text-lg'>$1,500</h1>
@@ -112,7 +133,7 @@ const SectionOne = () => {
   return (
     <section
       ref={ref}
-      className='grid grid-cols-1 gap-9 md:grid-cols-[1fr_1fr] justify-items-center mt-1 md:mt-9 md:gap-5'
+      className='grid grid-cols-1 gap-9 md:grid-cols-[1fr_1fr] justify-items-center mt-1 md:mt-9 md:gap-5 min-h-[700px]'
     >
       <motion.div
         initial={{ opacity: 0, x: 50 }}
@@ -130,8 +151,7 @@ const SectionOne = () => {
         <Tabs defaultValue='rent' className='w-full md:w-[600px]'>
           <TabsList className='grid w-full grid-cols-3'>
             <TabsTrigger value='rent'>Thuê</TabsTrigger>
-            <TabsTrigger value='buy'>Mua</TabsTrigger>
-            <TabsTrigger value='sell'>Bán</TabsTrigger>
+            <TabsTrigger value='coop'>Hợp tác</TabsTrigger>
           </TabsList>
 
           <TabsContent value='rent' className='flex flex-col gap-5'>
@@ -168,12 +188,15 @@ const SectionOne = () => {
             </Button>
           </TabsContent>
 
-          <TabsContent value='buy'>
-            <h1>This is for BUY</h1>
-          </TabsContent>
-
-          <TabsContent value='sell'>
-            <h1>This is for SELL</h1>
+          <TabsContent value='coop'>
+            <div className='flex flex-col gap-4 px-3'>
+              <h1 className='text-lg font-semibold text-primaryLight text-center md:text-left leading-snug'>
+                Hợp tác với chúng tôi để nhanh chóng tìm được người thuê nhà phù
+                hợp
+              </h1>
+              <Input type='email' placeholder='Email' className='w-full' />
+              <Button className='w-full md:w-auto'>Hợp tác</Button>
+            </div>
           </TabsContent>
         </Tabs>
 
@@ -191,71 +214,43 @@ const SectionOne = () => {
         </div>
       </motion.div>
 
-      <div className='relative w-full'>
-        {/* Hide background image on mobile */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1, filter: 'blur(0px)' } : {}}
-          transition={{ duration: 1 }}
-          className='hidden md:block bg-sectionOneBg bg-cover bg-center w-full h-full'
-          style={{ filter: 'blur(10px)' }}
+      <div className='relative w-full h-full'>
+        <Carousel
+          opts={{
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
         >
+          <CarouselContent className='h-full w-full relative space-x-6 px-1 md:space-x-12 md:px-6  md:ml-0 ml-2'>
+            {images.map((image, index) => (
+              <CarouselItem key={index} className='w-full h-full relative'>
+                <motion.div
+                  initial={{ filter: 'blur(10px)' }}
+                  animate={{ filter: 'blur(0px)' }}
+                  transition={{ duration: 0.8, ease: 'easeInOut' }}
+                  className='relative w-full h-[500px] md:h-[700px] rounded-xl'
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    objectFit='cover'
+                    className='rounded-xl'
+                    priority
+                  />
+                </motion.div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+
+        <div className='top-0 left-0  md:-top-5 md:-left-7 absolute  flex flex-col items-center justify-center md:items-start md:justify-start bg-opacity-90 rounded-xl w-full md:w-[400px] p-5  '>
           <UserCard />
-        </motion.div>
-
-        {/* Show UserCard above feedback on mobile */}
-        <div className='md:hidden'>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.5 }}
-          >
-            <UserCard />
-          </motion.div>
-          <div className='bg-[#013B42] p-4 w-full'>
-            <div className='flex flex-col md:flex-row justify-center items-center gap-3'>
-              <h1 className='text-lg text-white font-semibold text-center md:text-left'>
-                Xuất sắc
-              </h1>
-              <div className='flex flex-row items-center justify-center'>
-                <Star color='#FFB154' />
-                <Star color='#FFB154' />
-                <Star color='#FFB154' />
-                <Star color='#FFB154' />
-                <Star color='#FFB154' />
-              </div>
-            </div>
-
-            <h1 className='text-sm text-white font-semibold mt-3 text-center md:text-left'>
-              Từ 3,264 đánh giá
-            </h1>
-          </div>
         </div>
-
-        {/* Feedback section for desktop view */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1.5 }}
-          className='hidden md:block absolute bottom-0 right-0 bg-[#013B42] p-4 w-auto'
-        >
-          <div className='flex flex-row justify-center items-center gap-3'>
-            <h1 className='text-lg text-white font-semibold text-center md:text-left'>
-              Xuất sắc
-            </h1>
-            <div className='flex flex-row items-center justify-center'>
-              <Star color='#FFB154' />
-              <Star color='#FFB154' />
-              <Star color='#FFB154' />
-              <Star color='#FFB154' />
-              <Star color='#FFB154' />
-            </div>
-          </div>
-
-          <h1 className='text-sm text-white font-semibold mt-3 text-center md:text-left'>
-            Từ 3,264 đánh giá
-          </h1>
-        </motion.div>
       </div>
     </section>
   );
