@@ -79,20 +79,20 @@ const SectionFour = () => {
         </div>
       </main>
 
-      <main className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 divide-y-2 md:divide-y-0 md:divide-x-5 mt-9 justify-items-center'>
-        <div className='flex items-center flex-col py-5 md:py-0'>
+      <main className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-9 justify-items-center'>
+        <div className='flex items-center flex-col py-5 md:py-0 px-4 md:px-8 border-b md:border-b-0 md:border-r md:border-slate-500'>
           <h1 className='font-semibold text-3xl'>7.4%</h1>
           <span className='text-slate-500 text-xl text-center'>
             Tỷ lệ hoàn trả bất động sản
           </span>
         </div>
-        <div className='flex items-center flex-col py-5 md:py-0'>
+        <div className='flex items-center flex-col py-5 md:py-0 px-4 md:px-8 border-b md:border-b-0 md:border-r md:border-slate-500'>
           <h1 className='font-semibold text-3xl'>3,856</h1>
           <span className='text-slate-500 text-xl text-center'>
             Bất động sản đang bán & cho thuê
           </span>
         </div>
-        <div className='flex items-center flex-col py-5 md:py-0'>
+        <div className='flex items-center flex-col py-5 md:py-0 px-4 md:px-8'>
           <h1 className='font-semibold text-3xl'>2,540</h1>
           <span className='text-slate-500 text-xl text-center'>
             Giao dịch hoàn thành hàng ngày

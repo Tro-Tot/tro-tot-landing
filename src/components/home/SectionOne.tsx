@@ -133,7 +133,7 @@ const SectionOne = () => {
   return (
     <section
       ref={ref}
-      className='grid grid-cols-1 gap-9 md:grid-cols-[1fr_1fr] justify-items-center mt-1 md:mt-9 md:gap-5 min-h-[700px]'
+      className='grid grid-cols-1 gap-9 md:grid-cols-[1fr_1fr] justify-items-center mt-1 md:mt-9 md:gap-5 min-h-[700px] md:px-5'
     >
       <motion.div
         initial={{ opacity: 0, x: 50 }}
@@ -214,7 +214,7 @@ const SectionOne = () => {
         </div>
       </motion.div>
 
-      <div className='relative w-full h-full'>
+      <div className='relative w-full h-full ml-1'>
         <Carousel
           opts={{
             loop: true,
@@ -225,7 +225,7 @@ const SectionOne = () => {
             }),
           ]}
         >
-          <CarouselContent className='h-full w-full relative space-x-6 px-1 md:space-x-12 md:px-6  md:ml-0 ml-2'>
+          <CarouselContent className='h-full w-full relative space-x-6 px-1 md:space-x-12 md:px-6  md:ml-0 '>
             {images.map((image, index) => (
               <CarouselItem key={index} className='w-full h-full relative'>
                 <motion.div

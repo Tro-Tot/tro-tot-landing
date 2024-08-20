@@ -1,12 +1,7 @@
 'use client';
-import { useState, useRef } from 'react';
-import { Bath, BedSingle, Heart, Proportions, Sparkle } from 'lucide-react';
+import { useRef } from 'react';
 import { Button } from '../ui/button';
-import Image from 'next/image';
-import { Card } from '../ui/card';
-import { Badge } from '../ui/badge';
 import { useInView } from 'framer-motion';
-import Colors from '@/constants/color';
 import HouseCard from '../HouseCard';
 import { houses } from '@/data/house';
 
