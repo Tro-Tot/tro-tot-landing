@@ -238,8 +238,7 @@ const SectionOne = () => {
                     src={image.src}
                     alt={image.alt}
                     fill
-                    objectFit='cover'
-                    className='rounded-xl'
+                    className='rounded-xl object-cover'
                     priority
                   />
                 </motion.div>
