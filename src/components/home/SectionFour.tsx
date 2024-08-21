@@ -1,13 +1,24 @@
+'use client';
+import { useRef } from 'react';
+import { useInView } from 'framer-motion';
 import { Card } from '../ui/card';
 import { FileCheck, HousePlus, TvMinimalPlay } from 'lucide-react';
 import Colors from '@/constants/color';
 
 const SectionFour = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <section className='bg-primaryDark text-white py-8 px-9 h-[600px] flex flex-col'>
+    <section
+      ref={ref}
+      className={`bg-primaryDark text-white py-8 px-4 md:px-9 h-auto md:h-[600px] flex flex-col transition-all duration-1000 ease-in-out ${
+        isInView ? 'opacity-100 blur-none' : 'opacity-0 blur-lg'
+      }`}
+    >
       <main className='border-b border-b-slate-500 pb-9'>
-        <div className='flex items-center justify-around font-semibold'>
-          <div className='text-3xl max-w-md'>
+        <div className='flex flex-col md:flex-row items-center justify-between  font-semibold gap-5'>
+          <div className='text-2xl md:text-3xl max-w-md text-center md:text-left'>
             <span>Chúng tôi làm cho </span>
             <span className='text-primaryLight'>người thuê nhà </span>
             <span>và </span>
@@ -15,7 +26,7 @@ const SectionFour = () => {
             <span> trở nên dễ dàng hơn</span>
           </div>
 
-          <span className='text-sm text-slate-300 max-w-md'>
+          <span className='text-sm text-slate-300 max-w-md text-center md:text-left'>
             Dù là bán căn nhà hiện tại, tìm kiếm tài chính, hay mua một căn nhà
             mới, chúng tôi làm cho mọi thứ trở nên dễ dàng và hiệu quả. Điều
             tuyệt vời nhất? Bạn sẽ tiết kiệm được rất nhiều tiền và thời gian
@@ -23,8 +34,8 @@ const SectionFour = () => {
           </span>
         </div>
 
-        <div className='mt-9 grid grid-cols-3'>
-          <Card className='bg-blue-900 rounded-xl text-white w-[400px] flex items-center px-5 py-4 gap-x-5'>
+        <div className='mt-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center'>
+          <Card className='bg-blue-900 rounded-xl text-white flex items-center px-5 py-4 gap-x-5'>
             <div className='rounded-full px-3 py-3 bg-primaryDark w-fit text-white'>
               <TvMinimalPlay size={20} />
             </div>
@@ -38,7 +49,7 @@ const SectionFour = () => {
             </div>
           </Card>
 
-          <Card className='bg-slate-300 rounded-xl w-[400px] flex items-center px-5 py-4 gap-x-5'>
+          <Card className='bg-slate-300 rounded-xl flex items-center px-5 py-4 gap-x-5'>
             <div className='rounded-full px-3 py-3 bg-slate-200 w-fit text-white'>
               <HousePlus size={20} color={Colors.primaryLightBackgroundColor} />
             </div>
@@ -52,8 +63,8 @@ const SectionFour = () => {
             </div>
           </Card>
 
-          <Card className='bg-primaryLight rounded-xl text-white w-[400px] flex items-center px-5 py-4 gap-x-5'>
-            <div className='rounded-full px-3 py-3 bg- w-fit bg-white text-white'>
+          <Card className='bg-primaryLight rounded-xl text-white flex items-center px-5 py-4 gap-x-5'>
+            <div className='rounded-full px-3 py-3 w-fit bg-white text-white'>
               <FileCheck size={20} color={Colors.primaryLightBackgroundColor} />
             </div>
             <div className='flex flex-col gap-y-3'>
@@ -68,22 +79,22 @@ const SectionFour = () => {
         </div>
       </main>
 
-      <main className='grid grid-cols-3 divide-x-5 mt-9 justify-items-center justify-center'>
-        <div className='flex items-center flex-col'>
+      <main className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-9 justify-items-center'>
+        <div className='flex items-center flex-col py-5 md:py-0 px-4 md:px-8 border-b md:border-b-0 md:border-r md:border-slate-500'>
           <h1 className='font-semibold text-3xl'>7.4%</h1>
-          <span className='text-slate-500 text-xl'>
+          <span className='text-slate-500 text-xl text-center'>
             Tỷ lệ hoàn trả bất động sản
           </span>
         </div>
-        <div className='flex items-center flex-col'>
+        <div className='flex items-center flex-col py-5 md:py-0 px-4 md:px-8 border-b md:border-b-0 md:border-r md:border-slate-500'>
           <h1 className='font-semibold text-3xl'>3,856</h1>
-          <span className='text-slate-500 text-xl'>
+          <span className='text-slate-500 text-xl text-center'>
             Bất động sản đang bán & cho thuê
           </span>
         </div>
-        <div className='flex items-center flex-col'>
+        <div className='flex items-center flex-col py-5 md:py-0 px-4 md:px-8'>
           <h1 className='font-semibold text-3xl'>2,540</h1>
-          <span className='text-slate-500 text-xl'>
+          <span className='text-slate-500 text-xl text-center'>
             Giao dịch hoàn thành hàng ngày
           </span>
         </div>

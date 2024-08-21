@@ -10,14 +10,15 @@ const navLinkTabs = [
 
 const NavLink = () => {
   return (
-    <div className='flex flex-row gap-9'>
-      {navLinkTabs.map((tab) => {
-        return (
-          <div key={tab.name} className='text-sm'>
-            {tab.name}
-          </div>
-        );
-      })}
+    <div className='flex flex-col sm:flex-row gap-5 lg:gap-9'>
+      {navLinkTabs.map((tab) => (
+        <div
+          key={tab.name}
+          className='text-xl cursor-pointer hover:text-primaryLight'
+        >
+          {tab.name}
+        </div>
+      ))}
     </div>
   );
 };
